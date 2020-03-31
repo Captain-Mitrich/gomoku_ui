@@ -115,6 +115,9 @@ GMainWindow::GMainWindow(QWidget *parent) :
   hintButton->setFocusPolicy(Qt::NoFocus);
   undoLayout->addWidget(hintButton);
   connect(hintButton, &QAbstractButton::clicked, &m_game, &GModel::hint);
+#ifdef NDEBUG
+  hintButton->setVisible(false);
+#endif
 
   undoButton = new QToolButton(undoGroup);
   undoButton->setSizePolicy(sp);

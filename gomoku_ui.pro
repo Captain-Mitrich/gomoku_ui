@@ -57,3 +57,6 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../gomoku_a
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../gomoku_ai/.release/gomoku_ai.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../gomoku_ai/.debug/gomoku_ai.lib
 else:unix: PRE_TARGETDEPS += $$PWD/../gomoku_ai/.build/libgomoku_ai.a
+
+CONFIG(debug, debug|release):DEFINES += _DEBUG
+CONFIG(release, debug|release):DEFINES += NDEBUG
