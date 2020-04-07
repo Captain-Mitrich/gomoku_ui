@@ -264,13 +264,13 @@ bool GModel::doMoveImpl(int x, int y)
 
   bool player = !lastMovePlayer();
 
+  GMoveList& player_moves = m_points[player];
+  player_moves.emplace_back(x, y);
+
   //убираем признак последнего хода у хода противника
   GMoveList& enemy_moves = m_points[!player];
   if (!enemy_moves.empty())
     updateMove(enemy_moves.back(), (player == m_first) ? GCellData::WHITE : GCellData::BLACK);
-
-  GMoveList& player_moves = m_points[player];
-  player_moves.emplace_back(x, y);
 
   unsigned player_flag = (player == m_first) ? GCellData::BLACK : GCellData::WHITE;
   unsigned last_move_flags = player_flag | GCellData::LAST;

@@ -213,9 +213,15 @@ void GMainWindow::on_levelDown()
   levelSlider->setValue(levelSlider->value() - 1);
 }
 
-void GMainWindow::closeEvent(QCloseEvent *)
+void GMainWindow::closeEvent(QCloseEvent* event)
 {
+  if (m_game.isReady())
+  {
     autoSave();
+    event->accept();
+  }
+  else
+    event->ignore();
 }
 
 void GMainWindow::getNDIcon(const QPixmap& pm, QIcon& ndIcon)
